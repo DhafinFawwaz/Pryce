@@ -24,6 +24,22 @@ select:-webkit-autofill:focus {
     background-color: #2f323b !important;
 }
 
+.image-container {
+
+    width: 50%;
+  
+    > div {
+      position: unset !important;
+    }
+  
+    .image {
+      object-fit: contain;
+      width: 100% !important;
+      position: relative !important;
+      height: unset !important;
+    }
+  }
+
 /* p {
     @apply text-slate-50;
 }
@@ -80,17 +96,17 @@ h2 {
     @apply w-3
 }
 
-/* ::-webkit-scrollbar-track {
-  @apply rounded-xl bg-night-950
-} */
+::-webkit-scrollbar-track {
+  @apply rounded-xl bg-slate-800
+}
  
-/* ::-webkit-scrollbar-thumb {
-  @apply rounded-xl bg-night-400
-} */
+::-webkit-scrollbar-thumb {
+  @apply rounded-xl bg-slate-600
+}
 
-/* ::-webkit-scrollbar-thumb:hover {
-  @apply rounded-xl bg-night-300
-} */
+::-webkit-scrollbar-thumb:hover {
+  @apply rounded-xl bg-slate-500
+}
 
 @font-face {
     font-family: 'Rubik-Bold';
