@@ -18,10 +18,8 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		fontFamily: {
-  			RubikBold: ['Rubik-Bold', 'sans-serif'],
-  			RubikSemiBold: ['Rubik-SemiBold', 'sans-serif'],
-  			RubikRegular: ['Rubik-Regular', 'sans-serif'],
-  			Inter: ['Inter-Regular', 'sans-serif']
+  			Rubik: ['Rubik', 'sans-serif'],
+  			Inter: ['Inter', 'sans-serif']
   		},
   		fontSize: {
   			h1: ['30px', '120%'],
