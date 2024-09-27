@@ -8,73 +8,66 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      padding: {
-          '1.25': '0.3125rem',
+      borderRadius: {
+        low: '8px',
+        medium: '16px',
+        high: '32px',
       },
-      margin: {
-          '13': '3.25rem',
-          '15': '3.75rem',
-          '17': '4.25rem',
-
-          '26': '6.5rem',
+      fontFamily: {
+          RubikBold: ['Rubik-Bold', 'sans-serif'],
+          RubikSemiBold: ['Rubik-SemiBold', 'sans-serif'],
+          RubikRegular: ['Rubik-Regular', 'sans-serif'],
+          Inter: ['Inter-Regular', 'sans-serif'],
       },
-      height: {
-          '17': '4.25rem',
-          '18': '4.5rem',
-
-          '88': '22rem',
-      },
-      boxShadow: {
-          'rim-sm': 'inset 0 1px 0 0 #ffffff0d;',
-          'rim-md': 'inset 0 1px 0 0 #ffffff22;',
-          'rim-lg': 'inset 0 1px 0 0 #ffffff66;'
-      },
-      screens: {
-          'xxs': '576px'
-          // => @media (min-width: 440px) { ... }
-      },
-      scale: {
-          '102': '1.02',
-          '107': '1.07',
-          
-          '180': '1.8',
-          '190': '1.9',
-          '200': '2',
+      fontSize: {
+        h1: ['30px', '120%'],
+        h2: ['20px', '120%'],
+        h3: ['20px', '120%'],
+        sh1: ['20px', '120%'],
+        sh2: ['20px', '120%'],
+        b1: ['20px', '120%'],
+        b2: ['13px', '120%'],
+        st: ['12px','120%'],
       },
       colors: {
-          'night': {
-              50:  '#ffffff',
-              100: '#999999',
-              200: '#54565c', // Icon/Text disabled color in Card BG
-              300: '#51545d', // 
-              400: '#373a42', // Alt small button in Above Card BG
-              500: '#2d3037', // Alt line in Above Card BG
-              600: '#2f323b', // Above Above Card BG
-              700: '#282b30', // BG of all
-              800: '#242731', // Above Card BG
-              900: '#1f2128', // Card BG
-              950: '#131418', // Darker
+          black: '#000000',
+          muted: {
+            200: '#B3AFCA', //mute bg button
+            400: '#828181', //mute color button
+            700: '#5A5959', //mute bg button
           },
-          'iris': {
-              500: '#c04cff',
-              600: '#6c5dd3',
+          bone: '#e8edfd', //background dashboard
+          purple: {
+            200: '#EAEAFB', //hover
+            600: '#988bee', //purple
           },
-          'navy': {
-              500: '#3f8cff',
-              600: '#408dff',
-              700: '#6c83fe',
+          orange: {
+            100: 'F8F1E4', // bg tag type (transaction)
+            400: '#FFB50A', //cashflow expense
+            800: '#FF5F00', //pie chart
           },
-          'green': {
-              650: '#15883d',
-          }
-      },
-      
-      transitionTimingFunction: {
-          'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
-          'out-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',
-          'out-back-expo': 'cubic-bezier(0.175, 1.885, 0.32, 1.275)',
-          'out-back': 'cubic-bezier(0.175, 2.885, 0.32, 1.275)',
-          'out-back-little': 'cubic-bezier(0.175, 2.885, 0.32, 1.275)',
+          white: {
+            100: '#FFFFFF', //white
+            200: '#FEFEFE', //filter dashboard bg
+            300: '#EDEDEE', //border filter dashboard bg
+          },
+          green: {
+            200: '#6EA47E', //BG tag type (transaction)
+            400: '#9AE66E', //pie chart
+            600: '#8DCE97', //cashflow income
+          },
+          pink: 'F10086', //pie chart
+          sky: {
+            400: '#3A86FF',
+            600: '#34B3F1',
+          }, //pie chart
+          gray: {
+            300: '#68717D', //light text
+            400: '#6B6B77', //icon settings
+            800: '#959292', // login icon
+            900: '#4A5260', //title card
+          },
+          navy: '#07071B', //primary
       },
     }
   },
