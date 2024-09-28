@@ -1,21 +1,20 @@
-import { ensureNotAuthenticated } from '../api/auth/[...nextauth]/route';
-import LoginForm from './loginform';
+"use client"
 
-export default async function Login() {
-    await ensureNotAuthenticated();
+// import { ensureNotAuthenticated } from '../api/auth/[...nextauth]/route';
+import LoginForm from './component/loginform';
+
+const BackgroundGradient = 'bg-gradient-to-t from-slate-200 from-64% to-white-300 to-34%'
+
+export default function Login() {
+    // await ensureNotAuthenticated();
 
     return (
-<section className="bg-night-900 h-screen justify-center">
-    <div className="flex flex-col items-center justify-center p-5 mx-auto h-screen lg:py-0">
-        <div className="w-full md:mt-0 sm:max-w-md xl:p-0 bg-night-800 rounded-2xl p-2">
-            <div className="p-4 space-y-4 md:space-y-6 sm:p-8">
-                <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
-                    Login
-                </h1>
-                <LoginForm></LoginForm>
+        <div className={`${BackgroundGradient} h-screen flex flex-col items-center gap-10`}>
+            <div>
+                <h1 className='font-Rubik text-[48px] font-bold tracking-tight text-center'>Welcome Back!</h1>
+                <p className='text-[20px] max-w-[500px] text-center mt-3'>Log in to manage your finances and make data-driven decisions with ease.</p>
             </div>
+            <LoginForm />
         </div>
-    </div>
-</section>
     );
 }

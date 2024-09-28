@@ -46,7 +46,7 @@ function Content({isMobile = false}: {isMobile?: boolean}): JSX.Element {
             <h1 className={`text-[64px] max-w-[881px] ${h1_generic}`}>Empower Your Finances, Simplify Your Decisions.</h1>
             <p className={`${p_generic} max-w-[446px] text-[20px]`}>Track, manage, and optimize your organization&apos;s finances effortlessly</p>
           </div>
-          <BeautifulLink text={`Try for free`} />
+          <BeautifulLink text={`Try for free`} href="/login" />
       </div>
     )
   } else {
@@ -54,7 +54,7 @@ function Content({isMobile = false}: {isMobile?: boolean}): JSX.Element {
       <div className="flex flex-col mt-[5rem] pb-[5rem] gap-5 items-center">
         <h1 className={`md:text-[40px] text-[32px] mx-7 mt-5 max-w-[450px] ${h1_generic}`}>Empower Your Finances, Simplify Your Decisions.</h1>
         <p className={`${p_generic} text-[20px] mx-4 min-w-[212px] max-w-[350px]`}>Track, manage, and optimize your organization&apos;s finances effortlessly</p>
-        <BeautifulLink text={`Try for free`} className="mt-5" />
+        <BeautifulLink text={`Try for free`} href="/login" className="mt-5" />
       </div>
     )
   }
