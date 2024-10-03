@@ -1,6 +1,5 @@
 import { getSessionAndEnsureAuthenticated } from "@/app/api/auth/[...nextauth]/route";
 import { LogoutButton } from './logoutbutton';
-import { labelStyle, dataStyle } from "../style/style";
  
 export default async function Profile() {
     const session = await getSessionAndEnsureAuthenticated();
@@ -21,15 +20,11 @@ export default async function Profile() {
                     </button>
                 </div>
                 <div>
-                    <h3 className={labelStyle}>Username</h3>
+                    <h3 >Username</h3>
                     <h3 className={"font-bold text-base"}>{session!.data.username}</h3>
                 </div>
                 <div>
-                    <h3 className={labelStyle}>NIM</h3>
-                    <h3 className={"font-bold text-base"}>{session!.data.nim}</h3>
-                </div>
-                <div>
-                    <h3 className={labelStyle}>Email</h3>
+                    <h3 >Email</h3>
                     <h3 className={"font-bold text-base"}>{session!.data.email}</h3>
                 </div>
 

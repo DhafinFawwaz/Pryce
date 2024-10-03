@@ -4,8 +4,11 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table } from "@/components/ui/table";
 import MonthlyIncomeExpensesChart from "@/components/ui/MonthlyIncomeExpensesChart";
+import { getSessionAndEnsureAuthenticated } from "../api/auth/[...nextauth]/route";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const user = await getSessionAndEnsureAuthenticated();
+
   return (
     <div>
       <Sidebar />
