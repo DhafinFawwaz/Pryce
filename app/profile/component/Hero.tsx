@@ -7,13 +7,15 @@ import Avatar from "./Avatar"
 import Link from "next/link"
 import ProfileTitle from "./ProfileTitle"
 import { useState } from "react"
-import { AvatarType, DefaultAvatar, DefaultBadge } from "../constant/constant"
+import { DefaultProfile, ProfileType } from "../constant/constant"
 
 export default function Hero() {
     // TODO: Fetch database buat profile
-    const [avatar, setAvatar] = useState<AvatarType>(DefaultAvatar);
-    const [profilename, setProfilename] = useState<string>("Budi Siregar");
-    const [profilebadge, setProfileBade] = useState<string>(DefaultBadge);
+    const [profile, setProfile] = useState<ProfileType>(DefaultProfile);
+    const avatar = profile.avatar;
+    const profilename = profile.name;
+    const profilebadge = profile.badge;
+    const experience = profile.experience;
 
     return (
         <>
@@ -29,7 +31,7 @@ export default function Hero() {
                         alt="star"
                     />
                     <p className="mt-1">
-                        1020 XP
+                        {experience} XP
                     </p>
                 </span>
                 <Avatar Face={avatar.Face} Hair={avatar.Hair} Glass={avatar.Glass} Shirt={avatar.Shirt} Pants={avatar.Pants} />

@@ -9,7 +9,8 @@ export type AvatarType = {
 export type ProfileType = {
     avatar: AvatarType,
     name: string,
-    badge: string
+    badge: string,
+    experience: number
 }
 
 export const BaseAvatar = '/assets/primary_avatar.png'
@@ -31,5 +32,6 @@ export const DefaultAvatar: AvatarType = {
 export const DefaultProfile: ProfileType = {
     avatar: DefaultAvatar,
     name: "Budi Siregar",
-    badge: "Legend of Saving"
+    badge: "Legend of Saving",
+    experience: 0
 }
