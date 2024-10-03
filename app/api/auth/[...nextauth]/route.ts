@@ -1,7 +1,5 @@
 import NextAuth, { DefaultSession, User } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
-import { getServerSession } from 'next-auth';
-import { redirect } from "next/navigation";
 
 import type { NextAuthOptions } from 'next-auth'
 import prisma from "@/lib/prisma";
@@ -18,7 +16,7 @@ export interface UserSession extends DefaultSession {
     data: UserData;
 }
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
     secret: process.env.AUTH_SECRET,
     session: {
         strategy: "jwt",
