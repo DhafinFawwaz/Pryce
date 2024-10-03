@@ -1,7 +1,7 @@
 import { ensureNotAuthenticated } from '../api/auth/[...nextauth]/route';
-import LoginForm from './loginform';
+import { RegisterForm } from "./registerform";
 
-export default async function Login() {
+export default async function Register() {
     await ensureNotAuthenticated();
 
     return (
@@ -10,12 +10,12 @@ export default async function Login() {
         <div className="w-full md:mt-0 sm:max-w-md xl:p-0 bg-night-800 rounded-2xl p-2">
             <div className="p-4 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
-                    Login
+                    Register
                 </h1>
-                <LoginForm></LoginForm>
+                <RegisterForm></RegisterForm>
             </div>
         </div>
     </div>
 </section>
-    );
+);
 }
