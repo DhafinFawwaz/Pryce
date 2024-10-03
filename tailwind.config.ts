@@ -9,6 +9,15 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		height: {
+			screenContent: 'calc(100vh - 4rem)',
+		},
+		minHeight: {
+			screenTransaction: 'calc(100vh - 4rem)',
+		},
+		minWidth: {
+			table: 'calc(100vw - 10rem)',
+		},
   		borderRadius: {
   			low: '8px',
   			medium: '16px',
@@ -114,6 +123,6 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+//   plugins: [require("tailwindcss-animate")],
 };
 export default config;

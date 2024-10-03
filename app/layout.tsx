@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { NextAuthProvider } from './providers'
-import Sidebar from '@/components/ui/sidebar'
 
 export const metadata: Metadata = {
   title: 'Pryce',

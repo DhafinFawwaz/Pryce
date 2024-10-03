@@ -1,3 +1,4 @@
+import TransactionContent from "@/components/TransactionContent"
 import MobileNav from "@/components/ui/mobile-nav"
 import Sidebar from "@/components/ui/sidebar"
 
@@ -5,10 +6,10 @@ export default function TransactionPage() {
   return (
     <div>
       <Sidebar />
-      <div className="">
-        <MobileNav />
+      <MobileNav />
+      <div className="mx-5 md:ml-[260px] h-screenContent">
+        <TransactionContent />
       </div>
-      <p className="ml-[250px]">HALOHALO</p>
     </div>
   )
 }
