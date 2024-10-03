@@ -1,12 +1,17 @@
 "use client"
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function LogoutButton(){
+    const router = useRouter();
     function onLogout(e: React.MouseEvent<HTMLElement>) {
         e.preventDefault();
         signOut({
-            callbackUrl: `${window.location.origin}/login`
-        });
+            callbackUrl: `/login`,
+            redirect: false
+        }).then(() => {
+            router.replace('/login');
+        })
     }
 
     return <>

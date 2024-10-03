@@ -1,3 +1,5 @@
+"use client"
+
 import {z} from 'zod'
 import { Form } from "@/components/ui/form"
 import BeatifullTextField from '../../component/beatifulltextfield'
@@ -6,7 +8,10 @@ import { useForm } from 'react-hook-form';
 import { Button } from "@/components/ui/button"
 import { Mail, KeyRound } from 'lucide-react';
 import Link from 'next/link';
-
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useToast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 
 const formSchema = z.object({
     email: z
@@ -19,6 +24,8 @@ const formSchema = z.object({
 })
 
 export default function LoginForm(): JSX.Element {
+    const router = useRouter();
+    const { toast } = useToast();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -29,7 +36,27 @@ export default function LoginForm(): JSX.Element {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)
-        // TODO: Authentiation
+        
+        const email = values.email;
+        const password = values.password;
+        signIn('credentials',
+            {
+                email,
+                password,
+                callbackUrl: `/dashboard`,
+                redirect: false
+            }
+        ).then(res => {
+            if (res && res.ok) {
+                router.replace('/dashboard');
+            } else {
+                console.log("Login failed");
+                toast({
+                    title: "Login Failed",
+                    description: "Please check your email and password.",
+                })
+            }
+        })
     }
 
     return (
@@ -55,6 +82,7 @@ export default function LoginForm(): JSX.Element {
         <Button type="submit" className='w-full rounded-[13px] bg-[#4361EE]'>Submit</Button>
         <p className='text-center'>Don&apos;t have an account? <Link href='/register' prefetch className='font-Rubik font-medium pt-1 text-[#3A86FF] hover:text-purple-400'>Register</Link></p>
       </form>
+      <Toaster />
     </Form>
     )
 }
