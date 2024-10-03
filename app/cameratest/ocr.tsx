@@ -20,7 +20,7 @@ type OCRButton = {
 }
 
 type OCRProps = {
-    onConfirm: (imgSrc: string, totalMoney: number) => void;
+    onConfirm?: (imgSrc: string, totalMoney: number) => void;
 }
 
 export default function OCR({onConfirm}: OCRProps) {
