@@ -1,7 +1,7 @@
 "use client"
 
 import prisma from '../../lib/prisma';
-import { getSessionAndEnsureAuthenticated } from "../api/auth/[...nextauth]/route";
+import { getSessionAndEnsureAuthenticated } from "../api/auth/[...nextauth]/utils";
 
 interface dashboardProp{
     walletId: number;
