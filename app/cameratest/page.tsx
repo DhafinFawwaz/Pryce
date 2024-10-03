@@ -4,7 +4,10 @@ import OCR from './ocr';
 
 export default async function Page() {
     // const session = await getSessionAndEnsureAuthenticated();
+    function onFormConfirm() {
+
+    }
     return <div className='bg-slate-300 h-screen w-screen'>
-    <OCR></OCR>
+    <OCR onConfirm={onFormConfirm}></OCR>
 </div>
 }
