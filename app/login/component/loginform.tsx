@@ -1,17 +1,14 @@
 import {z} from 'zod'
 import { Form } from "@/components/ui/form"
-import BeatifullTextField from '@/app/component/beatifulltextfield'
+import BeatifullTextField from '../../component/beatifulltextfield'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Button } from "@/components/ui/button"
-import { Mail, KeyRound, UserRound } from 'lucide-react';
+import { Mail, KeyRound } from 'lucide-react';
 import Link from 'next/link';
 
 
 const formSchema = z.object({
-    username: z
-        .string()
-        .min(5, {message: "This field has to be filled"}),
     email: z
         .string()
         .min(1, {message: "This field has to be filled"})
@@ -21,7 +18,7 @@ const formSchema = z.object({
         .min(1, {message: "This field has to be filled"}),
 })
 
-export default function RegisterForm(): JSX.Element {
+export default function LoginForm(): JSX.Element {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -32,20 +29,12 @@ export default function RegisterForm(): JSX.Element {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)
-        // TODO: Authentication
+        // TODO: Authentiation
     }
 
     return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full">
-        <BeatifullTextField
-            control={form.control}
-            name='username'
-            label='Username'
-            placeholder='John Doe'
-            Icon={UserRound}
-            isError={form.formState.errors?.username ? true : false}
-        />
         <BeatifullTextField
             control={form.control}
             name='email'
@@ -64,7 +53,7 @@ export default function RegisterForm(): JSX.Element {
             isPassword
         />
         <Button type="submit" className='w-full rounded-[13px] bg-[#4361EE]'>Submit</Button>
-        <p className='text-center'>Already have an account? <Link href='/login' prefetch className='font-Rubik font-medium pt-1 text-[#3A86FF] hover:text-purple-400'>Login</Link></p>
+        <p className='text-center'>Don&apos;t have an account? <Link href='/register' prefetch className='font-Rubik font-medium pt-1 text-[#3A86FF] hover:text-purple-400'>Register</Link></p>
       </form>
     </Form>
     )
