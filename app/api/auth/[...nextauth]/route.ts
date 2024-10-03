@@ -87,13 +87,3 @@ export const authOptions: NextAuthOptions = {
 }
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
-
-export async function getSessionAndEnsureAuthenticated(): Promise<UserSession | null>{
-  const session: UserSession | null = await getServerSession(authOptions);
-  if(!session) redirect('/login');
-  return session;
-}
-export async function ensureNotAuthenticated(){
-  const session: UserSession | null = await getServerSession(authOptions);
-  if(session) redirect('/dashboard');
-}

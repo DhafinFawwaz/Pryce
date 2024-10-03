@@ -3,7 +3,7 @@ import LoginForm from './component/loginform';
 import BottomPattern from '@/public/images/login_bottom_pattern.png'
 import Logo from '@/public/images/pryce_logo.png'
 import Image from 'next/image';
-import { ensureNotAuthenticated } from '../api/auth/[...nextauth]/route';
+import { ensureNotAuthenticated } from '../api/auth/[...nextauth]/utils';
 
 const BackgroundGradient = 'bg-gradient-to-t from-slate-200 from-64% to-white-300 to-34%'
 

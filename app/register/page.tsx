@@ -1,6 +1,6 @@
 "use client"
 
-// import { ensureNotAuthenticated } from '../api/auth/[...nextauth]/route';
+import { ensureNotAuthenticated } from '../api/auth/[...nextauth]/utils';
 import RegisterForm from './registerform';
 import BottomPattern from '@/public/images/login_bottom_pattern.png'
 import Logo from '@/public/images/pryce_logo.png'
@@ -8,8 +8,8 @@ import Image from 'next/image';
 
 const BackgroundGradient = 'bg-gradient-to-t from-slate-200 from-64% to-white-300 to-34%'
 
-export default function Register() {
-    // await ensureNotAuthenticated();
+export default async function Register() {
+    await ensureNotAuthenticated();
 
     return (
         <div className={`${BackgroundGradient} h-screen`}>

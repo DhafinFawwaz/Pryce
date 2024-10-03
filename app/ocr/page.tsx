@@ -1,4 +1,4 @@
-import { getSessionAndEnsureAuthenticated } from '../api/auth/[...nextauth]/route';
+import { getSessionAndEnsureAuthenticated } from '../api/auth/[...nextauth]/utils';
 import OCR from './ocr';
 
 
