@@ -1,12 +1,19 @@
+"use client"
+
 import { Pencil } from "lucide-react"
 import Star from "@/public/assets/star.png"
 import Image from "next/image"
 import Avatar from "./Avatar"
 import Link from "next/link"
 import ProfileTitle from "./ProfileTitle"
+import { useState } from "react"
+import { AvatarType, DefaultAvatar, DefaultBadge } from "../constant/constant"
 
 export default function Hero() {
     // TODO: Fetch database buat profile
+    const [avatar, setAvatar] = useState<AvatarType>(DefaultAvatar);
+    const [profilename, setProfilename] = useState<string>("Budi Siregar");
+    const [profilebadge, setProfileBade] = useState<string>(DefaultBadge);
 
     return (
         <>
@@ -25,9 +32,9 @@ export default function Hero() {
                         1020 XP
                     </p>
                 </span>
-                <Avatar />
+                <Avatar Face={avatar.Face} Hair={avatar.Hair} Glass={avatar.Glass} Shirt={avatar.Shirt} Pants={avatar.Pants} />
             </div>
-            <ProfileTitle />
+            <ProfileTitle name={profilename} badge={profilebadge} />
         </>
     )
 }

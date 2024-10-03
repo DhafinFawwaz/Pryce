@@ -2,14 +2,14 @@ import Image from "next/image"
 import Assets from "@/public/data/file_paths.json"
 import { SetStateAction, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { AvatarType } from "../constant/constant"
+import { ProfileType } from "../constant/constant"
 import { Dispatch } from "react"
 
 type ComponentProps = {
-    setAvatar: Dispatch<SetStateAction<AvatarType>>;
+    setProfile: Dispatch<SetStateAction<ProfileType>>;
 }
 
-export default function Picker({setAvatar}: ComponentProps) {
+export default function Picker({setProfile}: ComponentProps) {
     const [menu, setMenu] = useState<string>("Hair")
 
     return(
@@ -64,14 +64,17 @@ export default function Picker({setAvatar}: ComponentProps) {
             </div>
             <div className="flex flex-row gap-4 justify-center items-center flex-wrap w-[85%] mt-7">
             {
-                menu === "Face" && Assets.faces.map((path) => (
+                menu === "Face" && Assets.faces.map((path: string) => (
                 <div
                     key={path}
                     className="flex items-center justify-center overflow-clip bg-blue-200 hover:bg-blue-500 hover:cursor-pointer p-3 rounded-lg"
                     onClick={() =>
-                    setAvatar((currentAvatar) => ({
-                        ...currentAvatar,
+                    setProfile((currentProfile) => ({
+                        ...currentProfile,
+                        avatar: {
+                        ...currentProfile.avatar,
                         Face: path,
+                        },
                     }))
                     }
                 >
@@ -80,14 +83,17 @@ export default function Picker({setAvatar}: ComponentProps) {
                 ))
             }
             {
-                menu === "Hair" && Assets.hair.map((path) => (
+                menu === "Hair" && Assets.hair.map((path: string) => (
                 <div
                     key={path}
                     className="flex items-center justify-center overflow-clip bg-blue-200 hover:bg-blue-500 hover:cursor-pointer p-3 rounded-lg"
                     onClick={() =>
-                    setAvatar((currentAvatar) => ({
-                        ...currentAvatar,
+                    setProfile((currentProfile) => ({
+                        ...currentProfile,
+                        avatar: {
+                        ...currentProfile.avatar,
                         Hair: path,
+                        },
                     }))
                     }
                 >
@@ -96,14 +102,17 @@ export default function Picker({setAvatar}: ComponentProps) {
                 ))
             }
             {
-                menu === "Shirt" && Assets.shirts.map((path) => (
+                menu === "Shirt" && Assets.shirts.map((path: string) => (
                 <div
                     key={path}
                     className="flex items-center justify-center overflow-clip bg-blue-200 hover:bg-blue-500 hover:cursor-pointer p-3 rounded-lg"
                     onClick={() =>
-                    setAvatar((currentAvatar) => ({
-                        ...currentAvatar,
+                    setProfile((currentProfile) => ({
+                        ...currentProfile,
+                        avatar: {
+                        ...currentProfile.avatar,
                         Shirt: path,
+                        },
                     }))
                     }
                 >
@@ -112,14 +121,17 @@ export default function Picker({setAvatar}: ComponentProps) {
                 ))
             }
             {
-                menu === "Glass" && Assets.glasses.map((path) => (
+                menu === "Glass" && Assets.glasses.map((path: string) => (
                 <div
                     key={path}
                     className="flex items-center justify-center overflow-clip bg-blue-200 hover:bg-blue-500 hover:cursor-pointer p-3 rounded-lg"
                     onClick={() =>
-                    setAvatar((currentAvatar) => ({
-                        ...currentAvatar,
+                    setProfile((currentProfile) => ({
+                        ...currentProfile,
+                        avatar: {
+                        ...currentProfile.avatar,
                         Glass: path,
+                        },
                     }))
                     }
                 >
@@ -128,14 +140,14 @@ export default function Picker({setAvatar}: ComponentProps) {
                 ))
             }
             {
-                menu === "Tag" && Assets.badge.map((badge) => (
+                menu === "Tag" && Assets.badge.map((badge: string) => (
                 <div
                     key={badge}
                     className="flex items-center justify-center overflow-clip bg-blue-200 hover:bg-blue-500 hover:cursor-pointer p-3 rounded-lg"
                     onClick={() =>
-                    setAvatar((currentAvatar) => ({
-                        ...currentAvatar,
-                        Glass: badge,
+                    setProfile((currentProfile) => ({
+                        ...currentProfile,
+                        badge: badge, // Updating the badge directly in `ProfileType`
                     }))
                     }
                 >
@@ -144,7 +156,6 @@ export default function Picker({setAvatar}: ComponentProps) {
                 ))
             }
             </div>
-
         </div>
     )
 }

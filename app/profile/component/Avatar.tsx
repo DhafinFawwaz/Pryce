@@ -30,7 +30,7 @@ export default function Avatar({
                 width={200}
                 height={200}
                 alt="tes"
-                className="absolute top-15"
+                className="absolute top-15 z-40"
             />
             <Image
                 src={Hair}

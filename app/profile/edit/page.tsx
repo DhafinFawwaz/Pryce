@@ -5,17 +5,17 @@ import Image from "next/image"
 import Star from "@/public/assets/star.png"
 import Picker from "../component/Picker"
 import { useState } from "react"
-import { AvatarType } from "../constant/constant"
-import { DefaultAvatar } from "../constant/constant"
+import { ProfileType, DefaultProfile } from "../constant/constant"
 import { MoveLeft } from "lucide-react"
 import Link from "next/link"
 
 
 export default function Edit(){
-    const [avatar, setAvatar] = useState<AvatarType>(DefaultAvatar);
+    const [profile, setProfile] = useState<ProfileType>(DefaultProfile);
+    const avatar = profile.avatar;
     function HandleSubmit() {
         // TODO: Kirim ke BE Hasil Perubahan
-        console.log("Tes");
+        console.log(profile);
     }
 
 
@@ -40,7 +40,7 @@ export default function Edit(){
                         1020 XP
                     </p>
                 </span>
-                <Picker setAvatar={setAvatar} />
+                <Picker setProfile={setProfile} />
             </div>
         </div>
     )
