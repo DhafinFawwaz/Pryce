@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { NextAuthProvider } from './providers'
+import Sidebar from '@/components/ui/sidebar'
 
 export const metadata: Metadata = {
   title: 'Pryce',
@@ -15,7 +16,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className="font-Inter">
+      <body className="font-Inter h-screen bg-gradient-to-br from-[#f5f5f6] to-purple-200">
         <NextAuthProvider>
           {children}
         </NextAuthProvider>

@@ -19,7 +19,10 @@ const config: Config = {
   		},
   		fontFamily: {
   			Rubik: ['Rubik', 'sans-serif'],
-  			Inter: ['Inter', 'sans-serif']
+  			Inter: ['Inter', 'sans-serif'],
+			RubikBold: ['Rubik-Bold', 'sans-serif'],
+			RubikSemiBold: ['Rubik-SemiBold', 'sans-serif'],
+			RubikRegular: ['Rubik-Regular', 'sans-serif']
   		},
   		fontSize: {
   			h1: ['30px', '120%'],
