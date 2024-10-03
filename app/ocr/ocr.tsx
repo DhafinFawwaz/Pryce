@@ -2,6 +2,8 @@
 import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { createWorker } from "tesseract.js";
+import { useToast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 
 
 type WebcamProps = {
@@ -19,11 +21,9 @@ type OCRButton = {
     words: TextBox[];
 }
 
-type OCRProps = {
-    onConfirm?: (imgSrc: string, totalMoney: number) => void;
-}
 
-export default function OCR({onConfirm}: OCRProps) {
+export default function OCR() {
+    const { toast } = useToast();
     const webcamRef = useRef(null);
     const [imgSrc, setImgSrc] = useState<string>("");
     const [ocrButton, setOCRButton] = useState<OCRButton|null>(null);
@@ -78,6 +78,7 @@ export default function OCR({onConfirm}: OCRProps) {
         setOCRButton({ width, height, words: extractedNumbers });
 
         if(!inputRef.current) return;
+        if(extractedNumbers.length === 0) return;
         (inputRef.current as HTMLInputElement).value = extractedNumbers[extractedNumbers.length-1].text;
 
     }, [webcamRef]);
@@ -103,13 +104,20 @@ export default function OCR({onConfirm}: OCRProps) {
         setOCRButton({ width: ocrButton?.width || 0, height: ocrButton?.height || 0, words });
     }
 
-    function onConfirmClicked() {
+    async function onConfirmClicked() {
         if(!inputRef.current) return;
-        if(!onConfirm) return;
-        onConfirm(imgSrc, parseFloat((inputRef.current as HTMLInputElement).value));
+        // if(!onConfirm) return;
+        // onConfirm(imgSrc, parseFloat((inputRef.current as HTMLInputElement).value));
+       
+        // API call
+        
+        toast({
+            title: "Success",
+            description: "Image submitted successfully.",
+        })
     }
 
-    return <div className="max-w-96">
+    return <div>
 
 { !imgSrc ?
 <Webcam ref={webcamRef} videoConstraints={!isFront ? {facingMode:  "user"} : {facingMode: { exact: "environment" }}} className="rounded-2xl" />
@@ -153,10 +161,10 @@ export default function OCR({onConfirm}: OCRProps) {
         </button>
     </div>
 
-    <div>Is this your number</div>
+    <div>Is this your number? Enter manually to correct the values</div>
     <div className="relative flex gap-4">
         <img className="absolute z-10 p-3" src="https://api.iconify.design/mingcute/cash-2-fill.svg?color=%2354565c" alt="" />
-        <input ref={inputRef} placeholder="Expense" type="number" className="appearance-none sm:text-sm rounded-xl block w-full bg-night-600 border-2 placeholder-night-400 text-white duration-200 drop-shadow-sm ease-out-back h-10 ring-indigo-500 hover:ring-1 border-none pl-12 outline-none focus:ring-4" />
+        <input ref={inputRef} placeholder="Expense" type="number" className="appearance-none sm:text-sm rounded-xl block w-full bg-night-600 border-2 placeholder-night-400 text-white drop-shadow-sm ease-out-back h-10 ring-indigo-500 hover:ring-1 border-none pl-12 outline-none focus:ring-4 bg-slate-200 "/>
         <button className="focus:ring-4 focus:ring-indigo-500 bg-indigo-600 rounded-xl font-bold text-slate-50 text-base hover:bg-indigo-700 hover:scale-102 dark:text-slate-50 p-2 pr-4 cursor-pointer disabled:bg-night-500 disabled:text-night-200 disabled:cursor-not-allowed tracking-wider px-4 flex justify-center" onClick={onConfirmClicked}>
             <img className="z-10 p-1 pr-2" src="https://api.iconify.design/mdi/check-bold.svg?color=%23ffffff" alt="" />
             Confirm
