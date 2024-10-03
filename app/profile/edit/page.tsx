@@ -8,6 +8,7 @@ import { useState } from "react"
 import { ProfileType, DefaultProfile } from "../constant/constant"
 import { MoveLeft } from "lucide-react"
 import Link from "next/link"
+import Sidebar from "@/components/ui/sidebar"
 
 
 export default function Edit(){
@@ -20,6 +21,8 @@ export default function Edit(){
 
 
     return (
+        <>
+        <Sidebar />
         <div className="flex items-center justify-center">
             <div className="flex flex-col items-center justify-center bg-slate-200 rounded-lg w-[1000px] my-7 pb-6 relative">
                 <Avatar Face={avatar.Face} Hair={avatar.Hair} Glass={avatar.Glass} Shirt={avatar.Shirt} Pants={avatar.Pants} />
@@ -43,5 +46,6 @@ export default function Edit(){
                 <Picker setProfile={setProfile} />
             </div>
         </div>
+        </>
     )
 }
