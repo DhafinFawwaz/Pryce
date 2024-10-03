@@ -4,14 +4,15 @@ import { getServerSession } from 'next-auth';
 import { redirect } from "next/navigation";
 
 import type { NextAuthOptions } from 'next-auth'
+import prisma from "@/lib/prisma";
 
 type UserData = {
-    username: string;
-    email: string;
-    nim: string;
-    password: string;
-    accessToken: string;
-    refreshToken: string;
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  accessToken: string;
+  refreshToken: string;
 }
 export interface UserSession extends DefaultSession {
     data: UserData;
@@ -37,24 +38,23 @@ export const authOptions: NextAuthOptions = {
                 placeholder: "example",
               },
               password: { label: "Password", type: "password" },
+              id: { label: "ID", type: "id" },
         },
         async authorize(credentials) {
-
-          const url = `${process.env.API_URL}/api/auth/login/`;
-          const res = await fetch(url, {
-            method: "POST",
-            body: JSON.stringify(credentials),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }).catch((err) => {
-            throw err;
-          });
-          const user = await res!.json();
-          
-          if (res.ok && user) {
+          console.log("authorize");
+          console.log(credentials);
+          try {
+            const user = await prisma.user.findFirst({
+              where: {
+                email: credentials!.email,
+                password: credentials!.password,
+              },
+            })
             return user;
+          } catch (error) {
+            console.log(error);
           }
+
           return null;
         },
       }),
@@ -67,20 +67,18 @@ export const authOptions: NextAuthOptions = {
       },
   
       async session({ session, token }) { // token is returned from jwt() above
+        console.log("session");
+        console.log(session);
+        
         const accessToken = (token.user as UserData).accessToken;
         const refreshToken = (token.user as UserData).refreshToken;
-        
-        const url = `${process.env.API_URL}/api/auth/`;
-          const res = await fetch(url, {
-            method: "POST",
-            body: JSON.stringify(session),
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${accessToken}`,
-            },
-          });
-        const user: UserData = await res.json();
-        (session as UserSession).data = user; // get session.user by useSession()
+
+        const userData: UserData = await prisma.user.findFirst({
+          where: {
+            id: (token.user as UserData).id,
+          },
+        });
+        (session as UserSession).data = userData; // get session.user by useSession()
 
         return session;
 
@@ -97,5 +95,5 @@ export async function getSessionAndEnsureAuthenticated(): Promise<UserSession | 
 }
 export async function ensureNotAuthenticated(){
   const session: UserSession | null = await getServerSession(authOptions);
-  if(session) redirect('/profile');
+  if(session) redirect('/dashboard');
 }

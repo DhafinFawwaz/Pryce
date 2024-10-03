@@ -9,6 +9,13 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		transitionTimingFunction: {
+			'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+			'out-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',
+			'out-back-expo': 'cubic-bezier(0.175, 1.885, 0.32, 1.275)',
+			'out-back': 'cubic-bezier(0.175, 2.885, 0.32, 1.275)',
+			'out-back-little': 'cubic-bezier(0.175, 2.885, 0.32, 1.275)',
+		},
   		borderRadius: {
   			low: '8px',
   			medium: '16px',
@@ -19,7 +26,10 @@ const config: Config = {
   		},
   		fontFamily: {
   			Rubik: ['Rubik', 'sans-serif'],
-  			Inter: ['Inter', 'sans-serif']
+  			Inter: ['Inter', 'sans-serif'],
+			RubikBold: ['Rubik-Bold', 'sans-serif'],
+			RubikSemiBold: ['Rubik-SemiBold', 'sans-serif'],
+			RubikRegular: ['Rubik-Regular', 'sans-serif']
   		},
   		fontSize: {
   			h1: ['30px', '120%'],

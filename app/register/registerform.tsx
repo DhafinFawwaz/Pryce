@@ -1,3 +1,5 @@
+"use client"
+
 import {z} from 'zod'
 import { Form } from "@/components/ui/form"
 import BeatifullTextField from '@/app/component/beatifulltextfield'
@@ -6,12 +8,13 @@ import { useForm } from 'react-hook-form';
 import { Button } from "@/components/ui/button"
 import { Mail, KeyRound, UserRound } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 const formSchema = z.object({
     username: z
         .string()
-        .min(5, {message: "This field has to be filled"}),
+        .min(4, {message: "Username must be at least 4 characters long"}),
     email: z
         .string()
         .min(1, {message: "This field has to be filled"})
@@ -22,6 +25,7 @@ const formSchema = z.object({
 })
 
 export default function RegisterForm(): JSX.Element {
+    const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -30,9 +34,25 @@ export default function RegisterForm(): JSX.Element {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
-        // TODO: Authentication
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        const name = values.username;
+        const email = values.email;
+        const password = values.password;
+
+        const res = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: name, email, password})
+        })
+
+        if (res.ok) {
+            router.replace('/login');
+        } else {
+            console.log('Failed')
+        }
+
     }
 
     return (
