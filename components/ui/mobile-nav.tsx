@@ -11,7 +11,7 @@ import SidebarLink from "../sidebarLink";
 export default function MobileNav() {
   return (
     <Sheet>
-      <div className="p-5">
+      <div>
 
       <SheetTrigger asChild className="">
         <Button variant="outline" size="icon" className="shrink-0 md:hidden">

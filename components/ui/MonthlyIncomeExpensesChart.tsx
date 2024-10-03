@@ -17,6 +17,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import PeopleCard from './PeopleCard';
+import ProjectBudgetChart from './ProjectBudgetChart';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -107,12 +109,12 @@ const MonthlyIncomeExpensesChart = () => {
       {
         label: 'Income',
         data: income,
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        backgroundColor: '#8dce97',
       },
       {
         label: 'Expenses',
         data: expenses,
-        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        backgroundColor: '#ffb50a',
       },
     ],
   };
@@ -152,6 +154,11 @@ const MonthlyIncomeExpensesChart = () => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
     plugins: {
       legend: {
         display: false,
@@ -167,53 +174,62 @@ const MonthlyIncomeExpensesChart = () => {
   const pieOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: {
+    plugins: {  
       legend: {
         display: false,
         position: 'top' as const,
       },
-      title: {
-        display: true,
-        text: 'Income and Expenses by Category',
-      },
+      // title: {
+      //   display: true,
+      //   text: 'Income and Expenses by Category',
+      // },
     },
   };
 
+  const projects = [
+    { name: 'Project A', usedBudget: 3000, totalBudget: 5000 },
+    { name: 'Project B', usedBudget: 2000, totalBudget: 4000 },
+    { name: 'Project C', usedBudget: 4500, totalBudget: 7000 },
+  ];
+
   return (
     <div>
-      <div className="flex flex-col p-4 bg-white rounded-lg shadow-md w-1/2">
-        <div className="flex justify-between mb-4">
-          <h2 className="text-lg font-semibold">Monthly Income and Expenses</h2>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="text-blue-600">
-              {period} Months
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem onClick={() => setPeriod('12')} className={period === '12' ? 'bg-blue-100' : ''}>
-                12 Months
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setPeriod('6')} className={period === '6' ? 'bg-blue-100' : ''}>
-                6 Months
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setPeriod('3')} className={period === '3' ? 'bg-blue-100' : ''}>
-                3 Months
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setPeriod('1')} className={period === '1' ? 'bg-blue-100' : ''}>
-                1 Month
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+      <div className="flex flex-col md:flex-row md:space-x-4 mt-2">
+        <div className="flex flex-col p-2 bg-white rounded-lg shadow-md w-1/2">
+          <div className="flex justify-between mb-2">
+            <h2 className="text-lg font-semibold">Monthly Income and Expenses</h2>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="text-blue-600">
+                {period} Months
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={() => setPeriod('12')} className={period === '12' ? 'bg-blue-100' : ''}>
+                  12 Months
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setPeriod('6')} className={period === '6' ? 'bg-blue-100' : ''}>
+                  6 Months
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setPeriod('3')} className={period === '3' ? 'bg-blue-100' : ''}>
+                  3 Months
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setPeriod('1')} className={period === '1' ? 'bg-blue-100' : ''}>
+                  1 Month
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          <div className="h-full">
+            <Bar data={data} options={options} />
+          </div>
         </div>
-        <div className="h-72">
-          <Bar data={data} options={options} />
-        </div>
+        <ProjectBudgetChart projects={projects}></ProjectBudgetChart>
       </div>
 
-      <div className="flex flex-col md:flex-row md:space-x-4 mt-4">
-        <div className="flex flex-col p-4 bg-white rounded-lg shadow-md w-full md:w-1/4 mt-4">
+      <div className="flex flex-col md:flex-row md:space-x-4 mt-2">
+        <div className="flex flex-col p-2 bg-white rounded-lg shadow-md w-full md:w-1/3 mt-2">
           <h2 className="text-lg font-semibold">Income by Category</h2>
           <DropdownMenu>
-            <DropdownMenuTrigger className="text-blue-600 mb-2">
+            <DropdownMenuTrigger className="text-blue-600 mb-1">
               {incomeCategoryPeriod} Months
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -232,15 +248,15 @@ const MonthlyIncomeExpensesChart = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           <button onClick={() => setShowIncomeLegend(!showIncomeLegend)} className="mb-2 w-8 h-8 bg-transparent border border-gray-300 rounded shadow-none flex items-center justify-center">☰</button>
-          <div className="h-72">
+          <div className="h-48">
             <Pie data={incomePieDataConfig} options={{ ...pieOptions, plugins: { ...pieOptions.plugins, legend: { display: showIncomeLegend } } }} />
           </div>
         </div>
 
-        <div className="flex flex-col p-4 bg-white rounded-lg shadow-md w-full md:w-1/4 mt-4">
+        <div className="flex flex-col p-2 bg-white rounded-lg shadow-md w-full md:w-1/3 mt-2">
           <h2 className="text-lg font-semibold">Expenses by Category</h2>
           <DropdownMenu>
-            <DropdownMenuTrigger className="text-blue-600 mb-2">
+            <DropdownMenuTrigger className="text-blue-600 mb-1">
               {expensesCategoryPeriod} Months
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -259,11 +275,13 @@ const MonthlyIncomeExpensesChart = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           <button onClick={() => setShowExpensesLegend(!showExpensesLegend)} className="mb-2 w-8 h-8 bg-transparent border border-gray-300 rounded shadow-none flex items-center justify-center">☰</button>
-          <div className="h-72">
+          <div className="h-48">
             <Pie data={expensesPieDataConfig} options={{ ...pieOptions, plugins: { ...pieOptions.plugins, legend: { display: showExpensesLegend } } }} />
           </div>
         </div>
+        <PeopleCard></PeopleCard>
       </div>
+
     </div>
   );
 };
