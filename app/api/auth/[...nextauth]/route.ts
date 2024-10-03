@@ -73,12 +73,21 @@ export const authOptions: NextAuthOptions = {
         const accessToken = (token.user as UserData).accessToken;
         const refreshToken = (token.user as UserData).refreshToken;
 
-        const userData: UserData = await prisma.user.findFirst({
+        const userData = await prisma.user.findFirst({
           where: {
             id: (token.user as UserData).id,
           },
         });
-        (session as UserSession).data = userData; // get session.user by useSession()
+
+        (session as UserSession).data = {
+          id: userData!.id,
+          username: userData? userData.name! : "",
+          email: userData? userData.email! : "",
+          password: userData!.password,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+
+        }; // get session.user by useSession()
 
         return session;
 
