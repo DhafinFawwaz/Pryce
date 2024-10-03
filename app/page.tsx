@@ -1,11 +1,12 @@
-// import Image from "next/image";
+import { ensureNotAuthenticated } from "./api/auth/[...nextauth]/route";
+import Landing from "./landing";
 
-export default function Home() {
+export default async function Home() {
+  await ensureNotAuthenticated();
+
   return (
-    <div className="">
-      landing page
-      <br />
-      <a href="/login">Login</a>
-    </div>
-  );
+    <>
+      <Landing></Landing>
+    </>
+  )
 }
