@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions, UserSession } from "./route";
+import { authOptions, UserSession } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 export async function getSessionAndEnsureAuthenticated(): Promise<UserSession | null>{
