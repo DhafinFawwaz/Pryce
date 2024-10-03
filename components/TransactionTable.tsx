@@ -2,7 +2,7 @@
 
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
-
+import TransactionAction from "./TransactionAction";
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
@@ -17,6 +17,10 @@ export default function TransactionTable({
         columns,
         getCoreRowModel: getCoreRowModel(),
     })
+
+    function handleEditRow(rowData : TData) {
+        // <>
+    }
 
     return (
         <Table>
@@ -48,6 +52,7 @@ export default function TransactionTable({
                             key={row.id}
                             data-state={row.getIsSelected() && "selected"}
                             className="border-none"
+                            onClick={() => handleEditRow(row.original)}
                         >
                             {row.getVisibleCells().map((cell) => (
                                 <TableCell key={cell.id} className={`text-center font-Inter text-gray-300 items-center justify-center`}>
