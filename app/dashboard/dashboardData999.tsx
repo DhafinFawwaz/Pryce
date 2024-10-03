@@ -175,3 +175,26 @@ export default async function Dashboard(prop: dashboardProp) {
 
     return <button></button>
 }
+
+/* 
+categoryExp/monthlyExp/categoryInc/monthlyInc: {
+    categoryName: string | undefined;
+    totalExpense: number | null;
+}[]
+
+projectProg: {
+    projectId: number | null;
+    totalExpense: number | null;
+    expenseLimit: number | undefined;
+}[]
+
+users: {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    name: string | null;
+    email: string | null;
+    password: string;
+}[] | undefined
+
+*/
