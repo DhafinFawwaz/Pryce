@@ -14,12 +14,12 @@ type Transaction = {
 
 export const Transactions: Transaction[] = [
     {
-        id: "01",
+        id: "07",
         date: "12-07-2024",
         category: "FnB",
         person: "daniel",
         desc: "kowa kowa",
-        amount: 100,
+        amount: 150,
         type: "Expense"
     },
     {
