@@ -11,13 +11,12 @@ import SidebarLink from "../sidebarLink";
 export default function MobileNav() {
   return (
     <Sheet>
-      <div>
-
-      <SheetTrigger asChild className="">
-        <Button variant="outline" size="icon" className="shrink-0 md:hidden">
-          <Menu className="h-5 w-5" />
-        </Button>
-      </SheetTrigger>
+      <div className="p-5">
+        <SheetTrigger asChild className="">
+          <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+            <Menu className="h-5 w-5" />
+          </Button>
+        </SheetTrigger>
       </div>
       <SheetContent side="left" className="flex flex-col pl-0 w-[240px] md:hidden">
         <nav className="grid gap-7 text-lg font-medium">

@@ -63,8 +63,8 @@ const ProjectBudgetChart: React.FC<ProjectBudgetChartProps> = ({ projects }) => 
   };
 
   return (
-    <div className="flex flex-col p-4 bg-white rounded-lg shadow-md w-full md:w-1/2 mt-2">
-      <Bar data={data} options={options} />
+    <div className="flex flex-col p-2 bg-white rounded-lg shadow-md w-full md:w-1/2">
+        <Bar data={data} options={options} />     
     </div>
   );
 };
