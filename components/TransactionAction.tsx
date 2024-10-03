@@ -29,8 +29,8 @@ export default function TransactionAction({
                 {title}
               </h2>
               
-              {type === "Add" && <FormAdd onCancel={onClose} />}
-              {type === "Edit" && <FormAdd onCancel={onClose} data={data} />}
+              {type === "Add" && <FormAdd />}
+              {type === "Edit" && <FormAdd data={data} />}
             </div>
           </div>
         </div>

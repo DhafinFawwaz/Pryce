@@ -20,7 +20,7 @@ export default function TransactionContent() {
         direction="vertical"
         className="max-w-full min-h-screenTransaction rounded-lg border-none md:min-w-full"
       >
-        <TransactionPanel title="Daily Transaction"/>
+        <TransactionPanel title="Daily Transaction" top={true}/>
         <ResizableHandle withHandle className="relative outline-none" />
         <TransactionPanel title="Project Transaction"/>
       </ResizablePanelGroup>

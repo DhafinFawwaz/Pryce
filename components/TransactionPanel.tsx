@@ -12,17 +12,18 @@ import TransactionAction from "./TransactionAction";
 
 interface TransactionPanelProps {
     title: string;
+    top: boolean
 }
-export default function TransactionPanel({title} : TransactionPanelProps){
+export default function TransactionPanel({title,top} : TransactionPanelProps){
     const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
     return (
-        <ResizablePanel className="flex gap-4 mb-5">
-          <div className="flex flex-col h-full bg-white-100 rounded-[24px] p-5 pr-0 w-[95%]">
-            <p className="font-RubikSemiBold text-gray-900">
-              {title}
-            </p>
-            <TransactionTable columns={columns} data={Transactions} />
-          </div>
+        <ResizablePanel className={`flex flex-row gap-4 ${top ? 'mb-5' : 'mt-5'}`}>
+            <div className="flex flex-col h-full bg-white-100 rounded-[24px] p-5 pr-0 w-[95%]">
+                <p className="font-RubikSemiBold text-gray-900">
+                    {title}
+                </p>
+                <TransactionTable columns={columns} data={Transactions} />
+            </div>
           <div className="flex flex-col mt-10 h-[130px] px-2 py-5 bg-white-100 gap-3 rounded-[8px]">
             <button
               className="rounded-full w-[35px] h-[35px]"

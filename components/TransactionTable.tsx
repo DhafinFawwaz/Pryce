@@ -16,8 +16,6 @@ import {
 } from "./ui/table";
 import TransactionAction from "./TransactionAction";
 import { Fragment, useState } from "react";
-import ButtonAction from "./ButtonAction";
-import Image from "next/image";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
