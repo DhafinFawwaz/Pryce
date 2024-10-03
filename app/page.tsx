@@ -60,49 +60,51 @@ function Content({isMobile = false}: {isMobile?: boolean}): JSX.Element {
   }
 }
 
-function DesktopView(): JSX.Element {
+function DesktopView({className}: {className?:string}): JSX.Element {
   const {height} = useWindowDimensions();
   const scrollHeight = 1145;
   return (
     <div 
-      className={`bg-center bg-contain bg-no-repeat static flex justify-center items-center ${BackgroundGradient}`}
+      className={`${className} bg-center bg-contain bg-no-repeat static ${BackgroundGradient}`}
       style={{
         height: height! > scrollHeight? height:scrollHeight
       }}
     >
-      <Image 
-        src={logo.src}
-        width={97}
-        height={35}
-        alt="Pryce Logo"
-        className="absolute top-5 right-5"
-      />
-      <Image 
-          src={circles_bottom.src} 
-          alt="Background Patterns"
-          style={{
-            minWidth: '1650.82px',
-            height: 'auto'
-          }}
-          width={1650.82}
-          height={1068.97}
-          className={(height! < scrollHeight) ? `absolute top-[30rem]` : `fixed bottom-0`}  
+      <div className="flex justify-center items-center">
+        <Image 
+          src={logo.src}
+          width={97}
+          height={35}
+          alt="Pryce Logo"
+          className="absolute top-5 right-5"
         />
-      <Image 
-        src={circle_tl.src} 
-        alt="Background Patterns" 
-        width={300}
-        height={300}
-        className="absolute top-0 left-0 2xl:block hidden"  
-      />
-      <Content />
+        <Image 
+            src={circles_bottom.src} 
+            alt="Background Patterns"
+            style={{
+              minWidth: '1650.82px',
+              height: 'auto'
+            }}
+            width={1650.82}
+            height={1068.97}
+            className={(height! < scrollHeight) ? `absolute top-[30rem]` : `fixed bottom-0`}  
+          />
+        <Image 
+          src={circle_tl.src} 
+          alt="Background Patterns" 
+          width={300}
+          height={300}
+          className="absolute top-0 left-0 2xl:block hidden"  
+        />
+        <Content />
+      </div>
     </div>
   )
 }
 
-function MobileView(): JSX.Element {
+function MobileView({className}: {className?:string}): JSX.Element {
   return (
-    <div className={`${BackgroundGradient}`}>
+    <div className={`${className} ${BackgroundGradient}`}>
       <Image 
         src={top_pattern_mobile.src}
         alt="Circle Pattern in top for mobile"
@@ -116,15 +118,12 @@ function MobileView(): JSX.Element {
 }
 
 export default function Home() {
-  const {width} = useWindowDimensions();
+  // const {width} = useWindowDimensions();
 
   return (
     <>
-      {width! > 900 ? (
-        <DesktopView />
-      ) : (
-        <MobileView />
-      )}
+      <DesktopView className="md:block hidden" />
+      <MobileView className="block md:hidden" />
     </>
   )
 }
