@@ -12,7 +12,7 @@ type UserData = {
   accessToken: string;
   refreshToken: string;
 }
-export interface UserSession extends DefaultSession {
+interface UserSession extends DefaultSession {
     data: UserData;
 }
 

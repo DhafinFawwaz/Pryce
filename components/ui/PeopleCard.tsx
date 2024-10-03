@@ -89,7 +89,9 @@ const PeopleCard: React.FC = () => {
   const handleAddUser = () => {
     if (newUser.username.trim()) {
       setPeople([...people, newUser as Person]);
-      setNewUser({ username: '', role: 'Admin', profileImage: 'https://via.placeholder.com/50' });
+      setNewUser({ username: '', role: 'Admin'
+        // , profileImage: 'https://via.placeholder.com/50' 
+      });
       toggleAddUserModal();
     }
   };
