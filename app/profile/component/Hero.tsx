@@ -20,7 +20,7 @@ export default function Hero() {
     return (
         <>
             <div className="flex flex-col items-center justify-center relative bg-slate-200 px-[9rem] mt-5 rounded-lg max-w-[1000px]">
-                <Link href="/profile/edit" className="absolute z-50 top-5 right-5 bg-purple-600 p-2 rounded-full hover:scale-105">
+                <Link href="/profile/edit" prefetch className="absolute z-50 top-5 right-5 bg-purple-600 p-2 rounded-full hover:scale-105">
                     <Pencil className="size-[1.8rem] text-white-300 " />
                 </Link>
                 <span className="absolute top-5 font-Rubik font-semibold text-[#4A5260] flex flex-row items-center gap-2">
