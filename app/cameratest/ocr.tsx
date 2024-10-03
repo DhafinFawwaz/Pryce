@@ -157,7 +157,10 @@ export default function OCR({onConfirm}: OCRProps) {
     <div className="relative flex gap-4">
         <img className="absolute z-10 p-3" src="https://api.iconify.design/mingcute/cash-2-fill.svg?color=%2354565c" alt="" />
         <input ref={inputRef} placeholder="Expense" type="number" className="appearance-none sm:text-sm rounded-xl block w-full bg-night-600 border-2 placeholder-night-400 text-white duration-200 drop-shadow-sm ease-out-back h-10 ring-indigo-500 hover:ring-1 border-none pl-12 outline-none focus:ring-4" />
-        <button className="focus:ring-4 focus:ring-indigo-500 bg-indigo-600 rounded-xl font-bold text-slate-50 text-base hover:bg-indigo-700 hover:scale-102 dark:text-slate-50 p-2 cursor-pointer disabled:bg-night-500 disabled:text-night-200 disabled:cursor-not-allowed tracking-wider px-4" onClick={onConfirmClicked}>Confirm</button>
+        <button className="focus:ring-4 focus:ring-indigo-500 bg-indigo-600 rounded-xl font-bold text-slate-50 text-base hover:bg-indigo-700 hover:scale-102 dark:text-slate-50 p-2 pr-4 cursor-pointer disabled:bg-night-500 disabled:text-night-200 disabled:cursor-not-allowed tracking-wider px-4 flex justify-center" onClick={onConfirmClicked}>
+            <img className="z-10 p-1 pr-2" src="https://api.iconify.design/mdi/check-bold.svg?color=%23ffffff" alt="" />
+            Confirm
+        </button>
         
     </div>
 </div>
